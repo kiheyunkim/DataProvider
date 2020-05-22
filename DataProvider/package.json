@@ -1,0 +1,21 @@
+{
+  "name": "dataprovider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "\\",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node ./router/test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "express": "^4.17.1",
+    "file-saver": "^2.0.2",
+    "jszip": "^3.4.0"
+  }
+}
