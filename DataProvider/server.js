@@ -1,6 +1,7 @@
 import express from 'express';
 import session from 'express-session';
 import fileRouter from './router/fileRouter';
+import fidoAuth from './router/fidoRouter';
 let app = express();
 
 app.use(session({
@@ -11,6 +12,7 @@ app.use(session({
 }));
 
 app.use("/file",fileRouter);
+app.use("/fido",fidoAuth);
 
 
 app.listen(4000,()=>{

@@ -1,18 +1,29 @@
-import express from 'express';
+import express, { response } from 'express';
 import jsZip from 'jszip';
 import fs from 'fs';
+import multer from 'multer'
 import sequelize from './../models/index';
 const router = express.Router();
+const upload = multer({dest:"papers/"});
+
+router.all('*',(request, response, next)=>{
+    //Fido 인증이 끝난경우 그에 대한 인증 코드를 부여하든 어떻게 하든 검사해야함. 아닌 경우 진입 금지
+    if(request.session.auth === 1234){
+        next();
+    }else{
+        response.status(404).send("Invalid Access");
+    }
+})
 
 router.get('/', async (request,response)=>{
     let transaction = null;
     try {
         transaction = await sequelize.transaction();
 
-        //1. 토큰 검색
-        let token = 2;
+        //1. 토큰 검색 
+        let token = 2; // = request.body.token
         if(token === undefined){
-            response.status(404);
+            response.status(404).send("Error");
             return;
         }
 
@@ -29,9 +40,8 @@ router.get('/', async (request,response)=>{
             pathes.push(papers.rows[i].dataValues.path);
         }
 
-
-        //3. 찾은 파일들 획득
-        let file=[];
+        //3. 찾은 파일들 획득 - 시간이 오래 지난경우의 파일들 도 제외해야함- 아직 없음
+        let file = [];
         pathes.forEach(path => {
             file.push(fs.readFileSync(path,{encoding:"UTF-8"}));
         });
@@ -50,7 +60,6 @@ router.get('/', async (request,response)=>{
         if(transaction){
             await transaction.rollback();
         }
-
         response.status(404).send("Error");
     }
 });

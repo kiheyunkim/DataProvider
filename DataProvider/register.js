@@ -4,8 +4,10 @@ const router = express.Router();
 
 let func = async ()=>{
 
-    await sequelize.models.token.create({token:2, path:__dirname + "\\router\\1.txt"});
-    await sequelize.models.token.create({token:2, path:__dirname + "\\router\\2.txt"});
+    await sequelize.models.token.create({token:1, path:__dirname + "\\files\\user1\\1.txt"});
+    await sequelize.models.token.create({token:1, path:__dirname + "\\files\\user1\\2.txt"});
+    await sequelize.models.token.create({token:2, path:__dirname + "\\files\\user2\\1.txt"});
+    await sequelize.models.token.create({token:2, path:__dirname + "\\files\\user2\\2.txt"});
 
     let token = 2;
     let papers = await sequelize.models.token.findAndCountAll({where:{token:token}});

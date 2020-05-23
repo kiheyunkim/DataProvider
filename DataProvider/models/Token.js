@@ -13,6 +13,10 @@ let addTokenModel = async (sequelize) => {
             type:DataTypes.STRING,
             allowNull:0
         },
+        type:{
+            type:DataTypes.STRING,
+            allowNull:0
+        },
         path:{
             type:DataTypes.STRING,
             allowNull:0
