@@ -1,8 +1,16 @@
-import express from 'express'
-import fileRouter from './router/fileRouter'
+import express from 'express';
+import session from 'express-session';
+import fileRouter from './router/fileRouter';
 let app = express();
 
-app.use;
+app.use(session({
+    resave : false,
+    saveUninitialized : false,
+    secret : "키",
+    cookie : { secure : false }
+}));
+
+app.use("/file",fileRouter);
 
 
 app.listen(4000,()=>{
