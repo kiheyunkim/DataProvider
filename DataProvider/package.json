@@ -14,7 +14,7 @@
     "@babel/node": "^7.8.7",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.1",
     "i": "^0.3.6",
     "jszip": "^3.4.0",
